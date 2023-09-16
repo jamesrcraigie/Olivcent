@@ -1,6 +1,8 @@
-import React, { useEffect, useState } from "react";
-import "./index.css";
-import { Product } from "./product";
+import { Typography } from "@mui/material";
+import { useEffect, useState } from "react";
+import "./styles.css";
+import { Product } from "../models/product";
+import Catalog from "../../features/catalog/Catalog";
 
 function App() {
   const [products, setProducts] = useState<Product[]>([]);
@@ -51,21 +53,13 @@ function App() {
       </header>
       <main id="main">
         <section>
-          <h2>Welcome to Olivcent Dashboard</h2>
+          <h2>Welcome to Olivcent</h2>
           <p>Select an option from the header to get started.</p>
         </section>
         <section id="products-section">
-          <h2>Products</h2>
-          <button onClick={addProduct}>Add Product</button>
-          <ul className="product-list">
-            {products.map((product) => (
-              <li key={product.id}>
-                <img src="http://picsum.photos/160" alt={product.name} />
-                <span className="product-name">{product.name}</span> -
-                <span className="product-price">£{product.price}</span>
-              </li>
-            ))}
-          </ul>
+          <h2>
+            <Catalog products={products} addProduct={addProduct} />
+          </h2>
         </section>
         <section id="shopify-section-template">
           <h2>Shopify Section Template</h2>

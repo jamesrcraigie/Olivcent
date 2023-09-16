@@ -21,12 +21,16 @@ li {
 
 .product-list {
   font-family: "Georgia", serif; /* A more elegant font for product listings */
-  font-size: 1.2em; /* Slightly larger font size */
+  font-size: 25px;
 }
 
 .product-name {
   font-weight: bold; /* Bold product name */
   color: #5c4f40; /* Soft tan color for product name */
+  word-wrap: break-word; /* Break the word and wrap onto the next line */
+  max-width: 300px; /* Set a maximum width after which the text should wrap */
+  overflow-wrap: break-word; /* Ensures words break and wrap onto the next line */
+  /* white-space: normal; Ensures the text wraps */
 }
 
 .product-price {
