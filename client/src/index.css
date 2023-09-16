@@ -1,13 +1,91 @@
+/* App.css */
 body {
+  font-family: Arial, sans-serif;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  padding: 0;
+  background-color: #faf3e0; /* Soft tan background */
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+ul {
+  list-style-type: none; /* Removes bullet points */
+  padding: 0;
+  margin: 0;
+}
+
+li {
+  display: flex;
+  flex-direction: column; /* Stacks image on top of text */
+  align-items: flex-start; /* Aligns content to the left */
+  margin: 10px 0; /* Adds some spacing between list items */
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+.title-header {
+  background-color: transparent;
+  color: #d4b996; /* Soft tan text color */
+  padding: 20px 0;
+  text-align: center;
+}
+
+#header {
+  background-color: #a67c52; /* Darker tan for contrast */
+  color: #faf3e0; /* Soft tan text color */
+  padding: 10px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#header h1 {
+  margin: 0;
+}
+
+.header-nav {
+  display: flex;
+  gap: 20px;
+}
+
+.header-nav a {
+  color: #faf3e0; /* Soft tan text color */
+  text-decoration: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+.header-nav a:hover {
+  background-color: #d4b996; /* Lighter tan for hover effect */
+}
+
+#main {
+  flex: 1;
+  padding: 20px;
+}
+
+section {
+  margin-bottom: 20px;
+}
+
+#shopify-section-template {
+  background-color: #eed9b7; /* Light tan background */
+  padding: 10px;
+  border-radius: 5px;
+}
+
+#shopify-section-template a {
+  display: block;
+  margin-top: 10px;
+  text-decoration: none;
+  color: #a67c52; /* Darker tan text color */
+  padding: 5px;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+#shopify-section-template a:hover {
+  background-color: #d4b996; /* Lighter tan for hover effect */
 }
