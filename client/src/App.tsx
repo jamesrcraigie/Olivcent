@@ -57,11 +57,12 @@ function App() {
         <section id="products-section">
           <h2>Products</h2>
           <button onClick={addProduct}>Add Product</button>
-          <ul>
+          <ul className="product-list">
             {products.map((product) => (
               <li key={product.id}>
                 <img src="http://picsum.photos/160" alt={product.name} />
-                {product.name} - £{product.price}
+                <span className="product-name">{product.name}</span> -
+                <span className="product-price">£{product.price}</span>
               </li>
             ))}
           </ul>

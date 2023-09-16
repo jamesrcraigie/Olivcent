@@ -19,6 +19,20 @@ li {
   margin: 10px 0; /* Adds some spacing between list items */
 }
 
+.product-list {
+  font-family: "Georgia", serif; /* A more elegant font for product listings */
+  font-size: 1.2em; /* Slightly larger font size */
+}
+
+.product-name {
+  font-weight: bold; /* Bold product name */
+  color: #5c4f40; /* Soft tan color for product name */
+}
+
+.product-price {
+  color: #a67c52; /* Darker tan color for product price */
+}
+
 .container {
   display: flex;
   flex-direction: column;
