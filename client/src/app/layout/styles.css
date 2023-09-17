@@ -6,6 +6,18 @@ body {
   background-color: #faf3e0; /* Soft tan background */
 }
 
+.product-list .MuiListItem-root {
+  flex-direction: row; /* Change direction to row */
+  align-items: center; /* Center items vertically */
+}
+
+/* Adjust the avatar size */
+.product-list .MuiAvatar-root {
+  width: 80px;
+  height: 80px;
+  margin-right: 20px; /* Add some spacing between the avatar and the text */
+}
+
 ul {
   list-style-type: none; /* Removes bullet points */
   padding: 0;

@@ -14,11 +14,8 @@ function App() {
         id: prevState.length + 1,
         name: "product" + (prevState.length + 1),
         price: prevState.length * 10,
-        description: "product" + (prevState.length + 1),
-        pictureUrl:
-          "http://picsum.photos/200" + (prevState.length + 1) + ".png",
-        type: "product" + (prevState.length + 1),
-        quantityInStock: 10,
+        description: "product",
+        pictureUrl: "http://picsum.photos/200",
       },
     ]);
   };

@@ -1,5 +1,11 @@
-import React, { useState, Fragment } from "react";
+import React, { Fragment } from "react";
 import { Product } from "../../app/models/product";
+import List from "@mui/material/List";
+import ListItem from "@mui/material/ListItem";
+import ListItemText from "@mui/material/ListItemText";
+import ListItemAvatar from "@mui/material/ListItemAvatar";
+import Avatar from "@mui/material/Avatar";
+import Button from "@mui/material/Button";
 
 interface Props {
   products: Product[];
@@ -9,16 +15,26 @@ interface Props {
 export default function Catalog({ products, addProduct }: Props) {
   return (
     <Fragment>
-      <ul className="product-list">
+      <List>
         {products.map((product) => (
-          <li key={product.id}>
-            <img src="http://picsum.photos/160" alt={product.name} />
-            <span className="product-name">{product.name}</span> -
-            <span className="product-price">£{product.price}</span>
-          </li>
+          <ListItem key={product.id}>
+            <ListItemAvatar>
+              <Avatar
+                src={product.pictureUrl} // Use the actual product image URL
+                alt={product.name}
+                sx={{ width: 80, height: 80 }} // Set the width and height
+              />
+            </ListItemAvatar>
+            <ListItemText
+              primary={product.name}
+              secondary={`£${product.price}`}
+            />
+          </ListItem>
         ))}
-      </ul>
-      <button onClick={addProduct}>Add Product</button>
+      </List>
+      <Button variant="contained" color="primary" onClick={addProduct}>
+        Add Product
+      </Button>
     </Fragment>
   );
 }
