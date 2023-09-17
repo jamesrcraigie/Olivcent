@@ -40,7 +40,7 @@ function App() {
   return (
     <div className="container">
       <div className="title-header">
-        <h1>Olivcent</h1>
+        <Typography variant="h1">Olivcent</Typography>
       </div>
       <header id="header">
         <div className="header-nav">
