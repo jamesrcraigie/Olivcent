@@ -6,6 +6,7 @@ import ListItemText from "@mui/material/ListItemText";
 import ListItemAvatar from "@mui/material/ListItemAvatar";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
+import ProductList from "./ProductList";
 
 interface Props {
   products: Product[];
@@ -15,23 +16,7 @@ interface Props {
 export default function Catalog({ products, addProduct }: Props) {
   return (
     <Fragment>
-      <List>
-        {products.map((product) => (
-          <ListItem key={product.id}>
-            <ListItemAvatar>
-              <Avatar
-                src={product.pictureUrl} // Use the actual product image URL
-                alt={product.name}
-                sx={{ width: 80, height: 80 }} // Set the width and height
-              />
-            </ListItemAvatar>
-            <ListItemText
-              primary={product.name}
-              secondary={`£${product.price}`}
-            />
-          </ListItem>
-        ))}
-      </List>
+      <ProductList products={products} addProduct={addProduct} />
       <Button variant="contained" color="primary" onClick={addProduct}>
         Add Product
       </Button>
