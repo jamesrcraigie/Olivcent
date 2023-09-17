@@ -6,18 +6,6 @@ body {
   background-color: #faf3e0; /* Soft tan background */
 }
 
-.product-list .MuiListItem-root {
-  flex-direction: row; /* Change direction to row */
-  align-items: center; /* Center items vertically */
-}
-
-/* Adjust the avatar size */
-.product-list .MuiAvatar-root {
-  width: 80px;
-  height: 80px;
-  margin-right: 20px; /* Add some spacing between the avatar and the text */
-}
-
 ul {
   list-style-type: none; /* Removes bullet points */
   padding: 0;
@@ -31,9 +19,11 @@ li {
   margin: 10px 0; /* Adds some spacing between list items */
 }
 
-.product-list {
-  font-family: "Georgia", serif; /* A more elegant font for product listings */
-  font-size: 25px;
+.product-list-container {
+  width: 30%; /* Adjust this value as needed */
+  max-width: 300px; /* Adjust this value as needed */
+  overflow-y: auto; /* Add scrollbar if content is too long */
+  border-right: 1px solid #ddd; /* Optional: Add a border to separate the list from the rest of the content */
 }
 
 .product-name {
