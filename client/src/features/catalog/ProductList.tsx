@@ -12,10 +12,12 @@ interface Props {
 
 export default function ProductList({ products }: Props) {
   return (
-    <List>
-      {products.map((product) => (
-        <ProductCard key={product.id} product={product} />
-      ))}
-    </List>
+    <div className="product-list-container">
+      <List>
+        {products.map((product) => (
+          <ProductCard key={product.id} product={product} />
+        ))}
+      </List>
+    </div>
   );
 }
