@@ -60,6 +60,19 @@ li {
   align-items: center;
 }
 
+/* Increase specificity by repeating the class */
+.custom-appbar.custom-appbar {
+  background-color: #a67c52; /* Darker tan for contrast */
+  border-bottom: 1px solid white;
+}
+
+.custom-typography.custom-typography {
+  font-family: "Georgia", serif; /* A more elegant font for the title */
+  font-size: 35px;
+  text-align: center;
+  flex-grow: 1;
+}
+
 #header h1 {
   margin: 0;
 }
@@ -84,6 +97,7 @@ li {
 #main {
   flex: 1;
   padding: 20px;
+  background-color: #f7e9d7;
 }
 
 section {

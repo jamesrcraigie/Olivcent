@@ -1,8 +1,9 @@
-import { Typography } from "@mui/material";
+import { Container, CssBaseline, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
 import "./styles.css";
 import { Product } from "../models/product";
 import Catalog from "../../features/catalog/Catalog";
+import Header from "./Header";
 
 function App() {
   const [products, setProducts] = useState<Product[]>([]);
@@ -36,9 +37,10 @@ function App() {
 
   return (
     <div className="container">
-      <div className="title-header">
-        <Typography variant="h1">Olivcent</Typography>
-      </div>
+      <>
+        <CssBaseline />
+        <Header />
+      </>
       <header id="header">
         <div className="header-nav">
           <a href="#products">Products</a>
@@ -54,9 +56,11 @@ function App() {
           <p>Select an option from the header to get started.</p>
         </section>
         <section id="products-section">
-          <h2>
-            <Catalog products={products} addProduct={addProduct} />
-          </h2>
+          <>
+            <Container>
+              <Catalog products={products} addProduct={addProduct} />
+            </Container>
+          </>
         </section>
         <section id="shopify-section-template">
           <h2>Shopify Section Template</h2>

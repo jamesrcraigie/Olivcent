@@ -3,7 +3,13 @@ import List from "@mui/material/List";
 import Button from "@mui/material/Button";
 import { Product } from "../../app/models/product";
 import ProductCard from "./ProductCard";
-import { ListItem, ListItemAvatar, Avatar, ListItemText } from "@mui/material";
+import {
+  ListItem,
+  ListItemAvatar,
+  Avatar,
+  ListItemText,
+  Grid,
+} from "@mui/material";
 
 interface Props {
   products: Product[];
@@ -12,12 +18,12 @@ interface Props {
 
 export default function ProductList({ products }: Props) {
   return (
-    <div className="product-list-container">
-      <List>
-        {products.map((product) => (
+    <Grid container spacing={2}>
+      {products.map((product) => (
+        <Grid item xs={4} key={product.id}>
           <ProductCard key={product.id} product={product} />
-        ))}
-      </List>
-    </div>
+        </Grid>
+      ))}
+    </Grid>
   );
 }
