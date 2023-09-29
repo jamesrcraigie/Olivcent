@@ -4,57 +4,27 @@ import {
   ThemeProvider,
   createTheme,
   GlobalStyles,
+  Typography,
 } from "@mui/material";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import "./styles.css";
-import { Product } from "../models/product";
-import Catalog from "../../features/catalog/Catalog";
 import Header from "./Header";
+import { Outlet } from "react-router-dom";
 
 function App() {
-  const [products, setProducts] = useState<Product[]>([]);
   const [darkMode, setDarkMode] = useState(false);
-
+  const paletteType = darkMode ? "dark" : "light";
   const theme = createTheme({
     palette: {
-      mode: darkMode ? "dark" : "light",
+      mode: paletteType,
     },
   });
-
-  const addProduct = () => {
-    setProducts((prevState) => [
-      ...prevState,
-      {
-        id: prevState.length + 1,
-        name: "product" + (prevState.length + 1),
-        price: prevState.length * 10,
-        description: "product",
-        pictureUrl: "http://picsum.photos/200",
-      },
-    ]);
-  };
-
-  useEffect(() => {
-    fetch("http://localhost:5000/api/products")
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
-        return response.json();
-      })
-      .then((data: Product[]) => setProducts(data))
-      .catch((error) =>
-        console.error("There was a problem fetching products:", error)
-      );
-  }, []);
-
   function handleThemeChange() {
     setDarkMode(!darkMode);
   }
 
   return (
     <ThemeProvider theme={theme}>
-      <CssBaseline />
       <GlobalStyles
         styles={(theme) => ({
           body: {
@@ -68,8 +38,7 @@ function App() {
             color: theme.palette.mode === "dark" ? "#333" : "#d4b996",
           },
           "#header, .custom-appbar.custom-appbar": {
-            backgroundColor:
-              theme.palette.mode === "dark" ? "#333" : "#a67c52",
+            backgroundColor: theme.palette.mode === "dark" ? "#333" : "#a67c52",
           },
           ".header-nav a": {
             color: theme.palette.mode === "dark" ? "#faf3e0" : "#333", // This needs to be updated
@@ -94,30 +63,16 @@ function App() {
         })}
       />
       <div className="container">
-        <Header darkMode={darkMode} handleThemeChange={handleThemeChange} />
-        <header id="header">
-          <div className="header-nav">
-            <a href="#products">Products</a>
-            <a href="#orders">Orders</a>
-            <a href="#customers">Customers</a>
-            <a href="#about">About</a>
-            <a href="#settings">Settings</a>
-          </div>
-        </header>
         <main id="main">
-          <section>
-            <h2>Welcome to Olivcent</h2>
-            <p>Select an option from the header to get started.</p>
-          </section>
-          <section id="products-section">
-            <>
-              <Container>
-                <Catalog products={products} addProduct={addProduct} />
-              </Container>
-            </>
-          </section>
+          <CssBaseline />
+          <Header darkMode={darkMode} handleThemeChange={handleThemeChange} />
+          <Container>
+            <Outlet />
+          </Container>
+          <p>Select an option from the header to get started.</p>
+
           <section id="shopify-section-template">
-            <h2>Shopify Section Template</h2>
+            <Typography variant="h2">Shopify Section Template</Typography>
             <a href="#placeholder1">Placeholder Link 1</a>
             <a href="#placeholder2">Placeholder Link 2</a>
             <a href="#placeholder3">Placeholder Link 3</a>

@@ -12,7 +12,9 @@ import {
   CardActions,
   Button,
   CardHeader,
+  CardActionArea,
 } from "@mui/material";
+import { Link } from "react-router-dom";
 
 interface Props {
   product: Product;
@@ -21,35 +23,59 @@ interface Props {
 export default function ProductCard({ product }: Props) {
   return (
     <Card>
-      <CardHeader
-        avatar={
-          <Avatar sx={{ bgcolor: "secondary.main" }}>
-            {product.name.charAt(0).toUpperCase()}
-          </Avatar>
-        }
-        title={product.name}
-        titleTypographyProps={{ sx: { fontWeight: "bold", color: "tan" } }}
-      />
-      <CardMedia
-        sx={{
-          height: 140,
-          backgroundSize: "contain",
-          bgcolor: "secondary.light",
-        }}
-        image={product.pictureUrl}
-        title={product.name}
-      />
-      <CardContent>
-        <Typography gutterBottom color="secondary" variant="h5" component="div">
-          £{(product.price / 100).toFixed(2)}
-        </Typography>
-        <Typography variant="body2" color="text.secondary">
-          {product.description} / {product.type}
-        </Typography>
-      </CardContent>
+      <CardActionArea>
+        <CardHeader
+          avatar={
+            <Avatar sx={{ bgcolor: "secondary.main" }}>
+              {product.name.charAt(0).toUpperCase()}
+            </Avatar>
+          }
+          title={product.name}
+          titleTypographyProps={{
+            sx: { fontWeight: "bold", color: "tan" },
+          }}
+        />
+        <CardMedia
+          sx={{
+            height: 140,
+            backgroundSize: "contain",
+            bgcolor: "secondary.light",
+          }}
+          image={product.pictureUrl}
+          title={product.name}
+        />
+        <CardContent>
+          <Typography
+            gutterBottom
+            color="secondary"
+            variant="h5"
+            component="div"
+          >
+            £{(product.price / 100).toFixed(2)}
+          </Typography>
+          <Typography variant="body2" color="text.secondary">
+            {product.description} / {product.type}
+          </Typography>
+        </CardContent>
+      </CardActionArea>
       <CardActions>
-        <Button size="small">Add to cart</Button>
-        <Button size="small">View</Button>
+        {/* <LoadingButton
+          loading={status.includes("pendingAddItem" + product.id)}
+          onClick={() =>
+            dispatch(addBasketItemAsync({ productId: product.id }))
+          }
+          size="small"
+        >
+          Add to cart
+        </LoadingButton> */}
+        <Button
+          component={Link}
+          to={`/catalog/${product.id}`}
+          size="small"
+          color="primary"
+        >
+          View
+        </Button>
       </CardActions>
     </Card>
   );
