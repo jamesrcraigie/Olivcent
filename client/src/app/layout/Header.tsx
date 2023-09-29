@@ -1,8 +1,43 @@
-import React from "react";
-import AppBar from "@mui/material/AppBar";
-import Toolbar from "@mui/material/Toolbar";
-import Typography from "@mui/material/Typography";
-import { Switch, ThemeProvider, createTheme } from "@mui/material";
+import { ShoppingCart } from "@mui/icons-material";
+import {
+  AppBar,
+  Badge,
+  Box,
+  IconButton,
+  List,
+  ListItem,
+  Switch,
+  Toolbar,
+  Typography,
+  ThemeProvider,
+  createTheme,
+} from "@mui/material";
+import { NavLink, Link } from "react-router-dom";
+// import { useStoreContext } from "../context/StoreContext";
+// import { useAppSelector } from "../store/configureStore";
+
+const midLinks = [
+  { title: "catalog", path: "/catalog" },
+  { title: "about", path: "/about" },
+  { title: "contact", path: "/contact" },
+];
+
+const rightLinks = [
+  { title: "login", path: "/login" },
+  { title: "register", path: "/register" },
+];
+
+const navStyles = {
+  color: "inherit",
+  textDecoration: "none",
+  typography: "h6",
+  "&:hover": {
+    color: "grey.500",
+  },
+  "&.active": {
+    color: "text.secondary",
+  },
+};
 
 interface Props {
   darkMode: boolean;
@@ -15,7 +50,7 @@ const getSwitchTheme = (darkMode: boolean) => {
       MuiSwitch: {
         styleOverrides: {
           track: {
-            backgroundColor: "tan", // Off state track color
+            backgroundColor: "tan",
           },
           thumb: {
             width: 24,
@@ -24,9 +59,9 @@ const getSwitchTheme = (darkMode: boolean) => {
           },
           switchBase: {
             "&.Mui-checked": {
-              color: "#ffffff", // Thumb color when on
+              color: "#ffffff",
               "& + .MuiSwitch-track": {
-                backgroundColor: "violet", // On state track color
+                backgroundColor: "violet",
               },
             },
           },
@@ -37,28 +72,97 @@ const getSwitchTheme = (darkMode: boolean) => {
 };
 
 export default function Header({ darkMode, handleThemeChange }: Props) {
+  // const { basket } = useAppSelector((state) => state.basket);
+  // const itemCount = basket?.items.reduce((sum, item) => sum + item.quantity, 0);
   return (
     <AppBar
       position="static"
       className="custom-appbar"
       style={{
         backgroundColor: darkMode ? "#333" : "#a67c52",
-        boxShadow: "none", // This removes the shadow
-        borderBottom: "none", // This removes the bottom line, if it's a border
+        boxShadow: "none",
+        borderBottom: "none",
       }}
-      elevation={0} // This is another way to remove the shadow
+      elevation={0}
     >
-      <Toolbar>
-        <Typography variant="h6" className="custom-typography">
-          Olivcent
-        </Typography>
-        <Typography variant="body1" style={{ width: "140px" }}>
-          {/* Fixed width here */}
-          {darkMode ? "Dark Mode On" : "Dark Mode Off"}
-        </Typography>
-        <ThemeProvider theme={getSwitchTheme(darkMode)}>
-          <Switch checked={darkMode} onChange={handleThemeChange} />
-        </ThemeProvider>
+      <Toolbar sx={{ padding: "0 2rem" }}>
+        {/* Main flex container to vertically stack items */}
+        <Box
+          display="flex"
+          flexDirection="column"
+          alignItems="center"
+          width="100%"
+        >
+          {/* Logo - Olivcent */}
+          <Typography className="custom-typography" sx={{ marginBottom: 1 }}>
+            Olivcent
+          </Typography>
+
+          {/* Flex container for navigation links and icons */}
+          <Box
+            display="flex"
+            alignItems="center"
+            justifyContent="space-between"
+            width="100%"
+          >
+            {/* Left Side - Mid Links */}
+            <List sx={{ display: "flex", gap: 2 }}>
+              {midLinks.map(({ title, path }) => (
+                <ListItem
+                  component={NavLink}
+                  to={path}
+                  key={path}
+                  sx={navStyles}
+                >
+                  {title.toUpperCase()}
+                </ListItem>
+              ))}
+              <IconButton
+                size="large"
+                edge="start"
+                color="inherit"
+                sx={{ mr: 2 }}
+              >
+                <Badge badgeContent={10} color="secondary">
+                  <ShoppingCart />
+                </Badge>
+              </IconButton>
+            </List>
+
+            {/* Right Side - Toggle, Cart, and Right Links */}
+            <Box display="flex" alignItems="center" sx={{ gap: 2 }}>
+              <List sx={{ display: "flex", gap: 1 }}>
+                {rightLinks.map(({ title, path }) => (
+                  <ListItem
+                    component={NavLink}
+                    to={path}
+                    key={path}
+                    sx={navStyles}
+                  >
+                    {title.toUpperCase()}
+                  </ListItem>
+                ))}
+              </List>
+              <IconButton
+                component={Link}
+                to="/basket"
+                size="large"
+                edge="end"
+                color="inherit"
+              >
+                {/* Uncomment below if you want to show the itemCount */}
+                {/* 
+              <Badge badgeContent={itemCount} color="secondary">
+                <ShoppingCart />
+              </Badge>
+              */}
+              </IconButton>
+              <ThemeProvider theme={getSwitchTheme(darkMode)}>
+                <Switch checked={darkMode} onChange={handleThemeChange} />
+              </ThemeProvider>
+            </Box>
+          </Box>
+        </Box>
       </Toolbar>
     </AppBar>
   );
