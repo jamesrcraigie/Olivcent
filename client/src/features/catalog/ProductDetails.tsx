@@ -66,12 +66,12 @@ function ProductDetails() {
                 <TableCell>{product.name}</TableCell>
               </TableRow>
               <TableRow>
-                <TableCell>Description</TableCell>
-                <TableCell>{product.description}</TableCell>
-              </TableRow>
-              <TableRow>
                 <TableCell>Type</TableCell>
                 <TableCell>{product.type}</TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell>Description</TableCell>
+                <TableCell>{product.description}</TableCell>
               </TableRow>
               {/* <TableRow>
             <TableCell>Brand</TableCell>
