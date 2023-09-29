@@ -84,10 +84,6 @@ function ProductDetails() {
             </TableBody>
           </Table>
         </TableContainer>
-
-        <Typography variant="body1" style={{ marginTop: "16px" }}>
-          {product.description}
-        </Typography>
       </Grid>
     </Grid>
   );
