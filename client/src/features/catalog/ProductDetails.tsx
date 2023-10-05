@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Product } from "../../app/models/product"; // Adjust the path based on your file structure
-import axios from "axios";
 import {
   Grid,
   Divider,
@@ -12,32 +11,28 @@ import {
   TableCell,
   TableRow,
 } from "@mui/material";
+import agent from "../../app/api/agent";
+import NotFound from "../../app/errors/NotFound";
+import LoadingComponent from "../../app/layout/LoadingComponent";
 
 function ProductDetails() {
   const { id } = useParams();
   const [product, setProduct] = useState<Product | null>(null);
-  const [error, setError] = useState<string | null>(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    axios
-      .get<Product>(`http://localhost:5000/api/products/${id}`)
-      .then((response) => {
-        setProduct(response.data);
-        setError(null);
-      })
-      .catch((error) => {
-        console.error("Error fetching product details:", error);
-        setError(error.message);
-      });
+    id && agent.Catalog.details(parseInt(id))
+      .then((response) => setProduct(response))
+      .catch(error => console.log(error))
+      .finally(() => setLoading(false))
+      
   }, [id]);
 
-  if (error) {
-    return <div>Error: {error}</div>;
+  if (loading) {
+    return <LoadingComponent message='Loading product...' />
   }
 
-  if (!product) {
-    return <div>Loading...</div>;
-  }
+  if (!product) return <NotFound />
 
   return (
     <Grid container spacing={6} style={{ paddingTop: "20px" }}>
