@@ -13,6 +13,7 @@ import {
   createTheme,
 } from "@mui/material";
 import { NavLink, Link } from "react-router-dom";
+import { useStoreContext } from "../context/StoreContext";
 // import { useStoreContext } from "../context/StoreContext";
 // import { useAppSelector } from "../store/configureStore";
 
@@ -72,6 +73,10 @@ const getSwitchTheme = (darkMode: boolean) => {
 };
 
 export default function Header({ darkMode, handleThemeChange }: Props) {
+  const {basket} = useStoreContext();
+
+  const itemCount = basket?.items.reduce((sum, item) => sum + item.quantity, 0);
+
   // const { basket } = useAppSelector((state) => state.basket);
   // const itemCount = basket?.items.reduce((sum, item) => sum + item.quantity, 0);
   return (
@@ -118,12 +123,13 @@ export default function Header({ darkMode, handleThemeChange }: Props) {
                 </ListItem>
               ))}
               <IconButton
+                component={Link} to='/basket'
                 size="large"
                 edge="start"
                 color="inherit"
                 sx={{ mr: 2 }}
               >
-                <Badge badgeContent={10} color="secondary">
+                <Badge badgeContent={itemCount} color="secondary">
                   <ShoppingCart />
                 </Badge>
               </IconButton>
